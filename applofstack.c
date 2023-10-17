@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <ctype.h>
-
 #define MAX_SIZE 100
-
-// Structure for the stack
 typedef struct {
     char data[MAX_SIZE];
     int top;
@@ -13,20 +10,15 @@ typedef struct {
 void initialize(Stack* stack) {
     stack->top = -1;
 }
-
 void push(Stack* stack, char value) {
     stack->data[++stack->top] = value;
 }
-
 char pop(Stack* stack) {
     return stack->data[stack->top--];
 }
-
 bool isEmpty(Stack* stack) {
     return stack->top == -1;
 }
-
-// Evaluate a postfix expression
 int evaluatePostfixExpression(const char* expression) {
     Stack stack;
     initialize(&stack);
@@ -55,15 +47,11 @@ int evaluatePostfixExpression(const char* expression) {
                     result = operand1 / operand2;
                     break;
             }
-
             push(&stack, result + '0');
         }
     }
-
     return pop(&stack) - '0';
 }
-
-// Check bracket matching
 bool isBracketMatch(const char* expression) {
     Stack stack;
     initialize(&stack);
@@ -101,6 +89,5 @@ int main() {
     } else {
         printf("Brackets are not matched.\n");
     }
-
     return 0;
 }
